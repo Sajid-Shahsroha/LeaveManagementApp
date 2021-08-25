@@ -1,0 +1,58 @@
+<div class="leaveRequest-form">
+  <form [formGroup]="leaveRequestForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>From Date</label>
+      <input type="text" formControlName="fromDate" class="form-control" placeholder="dd/mm/yyyy" bsDatepicker
+        [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }"
+        [ngClass]="{ 'is-invalid': submitted && f.fromDate.errors }" />
+      <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
+        <div *ngIf="f.fromDate.errors.required">From date is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>To Date</label>
+      <input type="text" formControlName="toDate" class="form-control" placeholder="dd/mm/yyyy" bsDatepicker
+        [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }"
+        [ngClass]="{ 'is-invalid': submitted && f.toDate.errors }" />
+      <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
+        <div *ngIf="f.toDate.errors.required">To date is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Leave Type</label>
+      <select formControlName="leaveTypeId" class="form-select" aria-label="Default select example">
+        <!-- <option *ngFor="let leaveType of leaveTypeList">{{leaveType}}</option> -->
+        <option value="1">Annual Leave</option>
+        <option value="2">Sick Leave</option>
+        
+      </select>
+      <div *ngIf="submitted && f.leaveTypeId.errors" class="invalid-feedback">
+        <div *ngIf="f.leaveTypeId.errors.required">Leave type is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Details</label>
+      <input type="text" formControlName="leaveReason" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.leaveReason.errors }" />
+      <div *ngIf="submitted && f.leaveReason.errors" class="invalid-feedback">
+        <div *ngIf="f.leaveReason.errors.required">Details is required</div>
+        <div *ngIf="f.leaveReason.errors.minlength">
+          Password must be at least 6 characters
+        </div>
+        <div *ngIf="f.leaveReason.errors.maxlength">
+          Username must not exceed 40 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="button" (click)="onReset()" class="btn btn-warning float-right">
+        Reset
+      </button>
+    </div>
+  </form>
+</div>

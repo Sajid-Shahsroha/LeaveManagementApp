@@ -1,0 +1,27 @@
+<div class="m-3">
+  <!-- <a class="nav-link btn-primary text-white w-25 center" href="/leaverequest">Create Leave Request</a> -->
+  <a class="button" href="/leaverequest">Create Leave Request</a>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Leave Type</th>
+        <th scope="col" sortable="fromDate">From Date</th>
+        <th scope="col" sortable="toDate">To Date</th>
+        <th scope="col" sortable="details">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let leaveRequest of leaveRequests">
+        <td>
+          {{ leaveRequest.leaveTypeId | leaveType }}
+        </td>
+        <td>{{ leaveRequest.toDate| date}}</td>
+        <td>{{ leaveRequest.fromDate |date }}</td>
+        <td>{{ leaveRequest.leaveReason }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
